@@ -1,0 +1,27 @@
+{
+  "name": "RGS Coffee Machine — Locação de Máquinas de Café Corporativas",
+  "short_name": "RGS Coffee",
+  "description": "Locação de máquinas de café para empresas em Campinas, Jundiaí e Cajamar, com torrefação própria Brown Coffee e suporte técnico em até 4 horas.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F5F1EA",
+  "theme_color": "#16110D",
+  "icons": [
+    {
+      "src": "assets/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

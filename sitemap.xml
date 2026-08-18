@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+  <url>
+    <loc>https://rgscoffeemachine.com.br/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://rgscoffeemachine.com.br/assets/hero.jpg</image:loc>
+      <image:title>Máquina de café corporativa instalada em escritório</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://rgscoffeemachine.com.br/assets/lab.jpg</image:loc>
+      <image:title>Laboratório técnico de máquinas de café em Campinas</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://rgscoffeemachine.com.br/assets/torra.jpg</image:loc>
+      <image:title>Torrefação própria Brown Coffee</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://rgscoffeemachine.com.br/assets/vending.jpg</image:loc>
+      <image:title>Máquina de vending de café para operação industrial 24 horas</image:title>
+    </image:image>
+  </url>
+</urlset>
