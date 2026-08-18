@@ -88,7 +88,7 @@
     segmento: 'Segmento',
     turnos: 'Turnos',
     pontos: 'Pontos de café',
-    cenario_atual: 'Cenário atual',
+    //cenario_atual: 'Cenário atual',
     vencimento_contrato: 'Vencimento do contrato atual',
     necessidades: 'Necessidades',
     menu: 'Menu de bebidas',
@@ -112,7 +112,7 @@
     'origem', 'faixa', 'sla_resposta', 'lead_score', 'proximo_passo',
     'empresa', 'cnpj', 'segmento', 'cidade', 'cep', 'endereco', 'unidades',
     'nome', 'cargo', 'email', 'whatsapp',
-    'colaboradores', 'turnos', 'pontos', 'cenario_atual',
+    'colaboradores', 'turnos', 'pontos', //'cenario_atual',
     'vencimento_contrato', 'necessidades', 'menu', 'prazo',
     'plano_sugerido', 'doses_mes', 'kg_mes', 'observacoes',
     'utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'pagina_origem'
@@ -885,7 +885,7 @@
         colaboradores: CALC.people,
         turnos: CALC.shifts + (CALC.shifts > 1 ? ' turnos' : ' turno'),
         pontos: CALC.points,
-        cenario_atual: CENARIO[CALC.now] || CALC.now,
+        //cenario_atual: CENARIO[CALC.now] || CALC.now,
         doses_mes: Math.round(r.monthly),
         kg_mes: Math.round(r.kg),
         plano_sugerido: r.plan.name,
@@ -936,7 +936,7 @@
 
     var titles = [
       'Sua operação',
-      'Cenário atual',
+      //'Cenário atual',
       'Dados da empresa',
       'Contato e agendamento'
     ];
@@ -1193,7 +1193,7 @@
         ['Colaboradores', $('#f-people').value || '—'],
         ['Segmento', picked.seg || '—'],
         ['Turnos', picked.shift || '—'],
-        ['Cenário atual', picked.now || '—'],
+        //['Cenário atual', picked.now || '—'],
         ['Plano indicado', r.plan.name],
         ['Volume estimado', num(r.monthly) + ' doses/mês']
       ];
@@ -1292,7 +1292,7 @@
       function () {
         if (aquecido) return;
         aquecido = true;
-        carregarRecaptcha().catch(function () {});
+        carregarRecaptcha().catch(function () { });
       },
       true
     );
@@ -1326,7 +1326,7 @@
         unidades: $('#f-units').value,
         segmento: picked.seg,
         turnos: picked.shift,
-        cenario_atual: picked.now,
+        //cenario_atual: picked.now,
         vencimento_contrato: $('#f-contract') ? $('#f-contract').value : '',
         necessidades: picked.need,
         menu: $('#f-drinks').value,
@@ -1385,14 +1385,14 @@
                 '?text=' +
                 encodeURIComponent(
                   'Olá! Sou ' +
-                    payload.nome +
-                    ' da ' +
-                    payload.empresa +
-                    '. Tentei enviar um orçamento pelo site e não completou. ' +
-                    payload.colaboradores +
-                    ' colaboradores em ' +
-                    payload.cidade +
-                    '.'
+                  payload.nome +
+                  ' da ' +
+                  payload.empresa +
+                  '. Tentei enviar um orçamento pelo site e não completou. ' +
+                  payload.colaboradores +
+                  ' colaboradores em ' +
+                  payload.cidade +
+                  '.'
                 );
             }
             erroBox.setAttribute('data-show', 'true');
@@ -1444,14 +1444,14 @@
             'https://wa.me/5519974061692?text=' +
             encodeURIComponent(
               'Olá! Sou ' +
-                payload.nome +
-                ' da ' +
-                payload.empresa +
-                '. Acabei de solicitar orçamento no site (' +
-                num(payload.colaboradores) +
-                ' colaboradores, ' +
-                payload.cidade +
-                ').'
+              payload.nome +
+              ' da ' +
+              payload.empresa +
+              '. Acabei de solicitar orçamento no site (' +
+              num(payload.colaboradores) +
+              ' colaboradores, ' +
+              payload.cidade +
+              ').'
             );
         }
 
