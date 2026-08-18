@@ -755,30 +755,14 @@
     $('#r-day').textContent = num(r.perDay);
     $('#r-peak').textContent = num(r.peak);
 
-    var isNothing = CALC.now === 'nada' && !CALC.spend;
-    var max = Math.max(r.nowCost, r.rgsMax, 1);
-
-    $('#r-now').textContent = isNothing
-      ? 'Sem café hoje'
-      : brl(r.nowCost) + ' /mês';
-    $('#r-now-bar').style.width = (r.nowCost / max) * 100 + '%';
+    var max = Math.max(r.rgsMax, 1);
 
     $('#r-rgs').textContent = brl(r.rgsMin) + ' a ' + brl(r.rgsMax) + ' /mês';
     $('#r-rgs-bar').style.width = (r.rgsMid / max) * 100 + '%';
 
-    if (isNothing) {
-      $('#r-save').textContent = num(r.monthly * 12);
-      $('#r-save-label').textContent =
-        'doses de café servidas por ano — o ganho aqui é de benefício e imagem, não de corte de custo';
-    } else if (r.save > 0) {
-      $('#r-save').textContent = brl(r.save);
-      $('#r-save-label').textContent =
-        'de economia potencial em 12 meses, mantido o mesmo volume de consumo';
-    } else {
-      $('#r-save').textContent = brl(r.rgsMid);
-      $('#r-save-label').textContent =
-        'investimento mensal estimado — com manutenção, insumo e SLA de 24h inclusos';
-    }
+    $('#r-save').textContent = brl(r.rgsMid * 12);
+    $('#r-save-label').textContent =
+      'investimento anual estimado — com manutenção, insumo e SLA de 24h inclusos';
 
     // repassa para o formulário
     var fp = $('#f-plan');
