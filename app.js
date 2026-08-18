@@ -643,27 +643,27 @@
       return {
         key: 'vending',
         name: 'Vending 24/7',
-        machine: 'Bianchi LEI e linha vending (Máquina Grande)'
+        machine: 'Necta Kikko / Vending (Máquina Grande)'
       };
     }
     if (people > 100 || doses > 4500) {
       return {
         key: 'industrial',
         name: 'Industrial',
-        machine: "Bianchi / Evoca (Máquina Grande)"
+        machine: "Necta Kikko (Máquina Grande)"
       };
     }
     if (people > 25 || doses > 1200) {
       return {
         key: 'corporativo',
         name: 'Corporativo',
-        machine: 'Saeco / Gaggia (Máquina Média)'
+        machine: 'Necta Solista (Máquina Média)'
       };
     }
     return {
       key: 'essencial',
       name: 'Essencial',
-      machine: "Saeco / De'Longhi (Máquina Pequena)"
+      machine: "Saeco Lirika (Máquina Pequena)"
     };
   }
 
