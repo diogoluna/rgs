@@ -777,7 +777,7 @@
     } else {
       $('#r-save').textContent = brl(r.rgsMid);
       $('#r-save-label').textContent =
-        'investimento mensal estimado — com manutenção, insumo e SLA de 4h inclusos';
+        'investimento mensal estimado — com manutenção, insumo e SLA de 24h inclusos';
     }
 
     // repassa para o formulário
