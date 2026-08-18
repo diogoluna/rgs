@@ -621,36 +621,49 @@
   var DOSES_PER_KG = 1000 / GRAMS_PER_DOSE; // ≈ 143
   // Custo de referência por dose para o cenário atual (premissa a validar).
   var NOW_COST = { coado: 0.42, capsula: 1.85, propria: 0.55, nada: 0 };
-  // Faixa estimada de custo por dose no modelo de locação RGS.
-  var RGS_COST_MIN = 0.26;
-  var RGS_COST_MAX = 0.38;
+
+  // Valores reais de locação de máquina por ponto (R$/mês)
+  var MACHINE_PRICE = {
+    essencial: 250,   // Máquina Pequena (R$ 250/mês)
+    corporativo: 490, // Máquina Média (R$ 490/mês)
+    industrial: 690,  // Máquina Grande (R$ 690/mês)
+    vending: 690      // Máquina Grande (R$ 690/mês)
+  };
+
+  // Preço do café por kg (R$ 79,90 a R$ 115,00/kg) - Padrão Premium: R$ 91,90
+  var COFFEE_PRICE_KG = {
+    tradicional: 79.90, // Café Tradicional
+    superior: 89.90,    // Café Superior
+    premium: 91.90,     // Café Premium (padrão)
+    gourmet: 115.00     // Café Gourmet
+  };
 
   function planFor(doses, people, shifts) {
     if (shifts === 3 || people > 300 || doses > 14000) {
       return {
         key: 'vending',
         name: 'Vending 24/7',
-        machine: 'Bianchi LEI e linha vending · projeto dedicado'
+        machine: 'Bianchi LEI e linha vending (Máquina Grande)'
       };
     }
     if (people > 100 || doses > 4500) {
       return {
         key: 'industrial',
         name: 'Industrial',
-        machine: "Bianchi / Evoca alto volume"
+        machine: "Bianchi / Evoca (Máquina Grande)"
       };
     }
     if (people > 25 || doses > 1200) {
       return {
         key: 'corporativo',
         name: 'Corporativo',
-        machine: 'Saeco / Gaggia super-automática'
+        machine: 'Saeco / Gaggia (Máquina Média)'
       };
     }
     return {
       key: 'essencial',
       name: 'Essencial',
-      machine: "Saeco / De'Longhi compacta"
+      machine: "Saeco / De'Longhi (Máquina Pequena)"
     };
   }
 
@@ -675,10 +688,22 @@
         ? CALC.spend
         : monthly * NOW_COST[CALC.now];
 
-    var milkAdd = 1 + (CALC.milk / 100) * 0.35; // insumo de leite encarece a dose
-    var rgsMin = monthly * RGS_COST_MIN * milkAdd;
-    var rgsMax = monthly * RGS_COST_MAX * milkAdd;
-    var rgsMid = (rgsMin + rgsMax) / 2;
+    // Custo real RGS:
+    // 1. Locação de máquinas = pontos * valor real por máquina (250, 490 ou 690)
+    var machineRental = CALC.points * (MACHINE_PRICE[plan.key] || 490);
+
+    // 2. Custo de café em grão (mín: Tradicional R$79.90, máx: Gourmet R$115.00, médio: Premium R$91.90)
+    var coffeeMin = kg * COFFEE_PRICE_KG.tradicional;
+    var coffeeMid = kg * COFFEE_PRICE_KG.premium;
+    var coffeeMax = kg * COFFEE_PRICE_KG.gourmet;
+
+    // 3. Insumos adicionais (leite, chocolate, descartáveis ~ R$ 20/kg + adicional de leite)
+    var milkAdd = (CALC.milk / 100) * 12.00;
+    var suppliesCost = kg * (20.00 + milkAdd);
+
+    var rgsMin = machineRental + coffeeMin + (suppliesCost * 0.9);
+    var rgsMax = machineRental + coffeeMax + (suppliesCost * 1.1);
+    var rgsMid = machineRental + coffeeMid + suppliesCost;
 
     return {
       perDay: perDay,
